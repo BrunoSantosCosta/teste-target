@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:target_teste/controller/login_mobx.dart';
+import 'package:target_teste/controller/login/login_mobx.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:url_launcher/link.dart';
 
@@ -16,6 +16,8 @@ class LoginPage extends StatelessWidget {
       body: Observer(
         builder: (context) {
           return Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [
@@ -207,7 +209,7 @@ class LoginPage extends StatelessWidget {
                                       'Ambos os campos devem estar preenchidos!')),
                             );
                           } else {
-                            print('foiiii');
+                            Navigator.pushNamed(context, '/home');
                           }
                         },
                         style: ElevatedButton.styleFrom(

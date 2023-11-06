@@ -19,7 +19,6 @@ abstract class LoginMobxBase with Store {
 
   @action
   void togglePasswordVisibility() {
-    print(obscurePassword);
     obscurePassword = !obscurePassword;
   }
 }
