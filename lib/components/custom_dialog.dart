@@ -5,12 +5,14 @@ class CustomDialog extends StatelessWidget {
   final String content;
   final VoidCallback onButtonPressed;
   final TextEditingController? textfield;
+  final String textButton;
   const CustomDialog({
     super.key,
     required this.title,
     required this.content,
     required this.onButtonPressed,
     this.textfield,
+    required this.textButton,
   });
   @override
   Widget build(BuildContext context) {
@@ -20,6 +22,9 @@ class CustomDialog extends StatelessWidget {
       ),
       elevation: 0,
       child: Container(
+        constraints: BoxConstraints(
+          maxWidth: MediaQuery.of(context).size.width > 500 ? 450 : 320,
+        ),
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
           gradient: const LinearGradient(
@@ -45,21 +50,17 @@ class CustomDialog extends StatelessWidget {
             textfield != null
                 ? TextField(
                     style: const TextStyle(
-                      color: Colors.white, // Cor do texto rosa
+                      color: Colors.white,
                     ),
                     controller: textfield,
                     decoration: const InputDecoration(
                       labelText: 'Digite aqui',
-                      labelStyle: TextStyle(
-                          color: Colors.white), // Cor do texto de rótulo
+                      labelStyle: TextStyle(color: Colors.white),
                       focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Colors.white), // Cor do sublinhado ao focar
+                        borderSide: BorderSide(color: Colors.white),
                       ),
                       enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                            color:
-                                Colors.white), // Cor do sublinhado desativado
+                        borderSide: BorderSide(color: Colors.white),
                       ),
                     ),
                   )
@@ -94,9 +95,9 @@ class CustomDialog extends StatelessWidget {
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.white)),
                   onPressed: onButtonPressed,
-                  child: const Text(
-                    'Salvar',
-                    style: TextStyle(
+                  child: Text(
+                    textButton,
+                    style: const TextStyle(
                       color: Colors.black,
                     ),
                   ),
